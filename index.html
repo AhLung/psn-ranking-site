@@ -1,13 +1,13 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="PSN Rank public frontend dashboard for PlayStation trophy tracking and platinum leaderboard views."
+    content="PSN 排行網站，顯示白金排名、完成率、近期進度與後續功能區塊。"
   />
-  <title>PSN Rank Dashboard</title>
+  <title>PSN 排行戰報</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
@@ -16,28 +16,28 @@
       <div class="brand">
         <span class="brand-mark">PS</span>
         <div class="brand-copy">
-          <p>PSN Rank</p>
-          <small>Public Frontend</small>
+          <p>PSN 排行戰報</p>
+          <small>公開前端網站</small>
         </div>
       </div>
 
       <nav class="nav-links" aria-label="Dashboard sections">
-        <a href="#top-three">Top 3</a>
-        <a href="#leaderboard">Leaderboard</a>
-        <a href="#future">Future Blocks</a>
+        <a href="#top-three">前三名</a>
+        <a href="#leaderboard">排行榜</a>
+        <a href="#future">後續功能</a>
       </nav>
     </header>
 
     <main id="app" class="content" aria-live="polite">
       <section class="section-shell">
-        <p class="eyebrow">Loading</p>
-        <h2>Preparing dashboard data...</h2>
-        <p class="section-note">Reading <code>data/players.json</code> and validating content.</p>
+        <p class="eyebrow">載入中</p>
+        <h2>正在整理排行榜資料...</h2>
+        <p class="section-note">正在讀取 <code>data/players.json</code> 並檢查內容格式。</p>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>Public site repo. Reads sanitized local JSON only.</p>
+      <p>本網站只讀取整理過的本地 JSON 資料。</p>
     </footer>
   </div>
 

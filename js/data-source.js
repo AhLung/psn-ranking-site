@@ -1,19 +1,19 @@
-const PLAYERS_URL = new URL("../data/players.json", import.meta.url);
+﻿const PLAYERS_URL = new URL("../data/players.json", import.meta.url);
 
 const FALLBACK_DATA = {
   site: {
-    title: "PSN Rank Dashboard",
-    season: "Spring 2026",
+    title: "PSN 排行戰報",
+    season: "2026 春季賽",
     updatedAt: "2026-03-30 20:00 UTC+8",
-    sourceLabel: "Built-in mock data",
+    sourceLabel: "內建示意資料",
   },
   players: [
     {
       id: "night-raven",
       onlineId: "NightRavenTW",
       displayName: "Night Raven",
-      tagline: "Finishes the hard platinum before breakfast.",
-      location: "Taipei",
+      tagline: "高難度白金也能穩定收下。",
+      location: "台北",
       avatar: {
         initials: "NR",
         accent: "#fbbf24",
@@ -27,9 +27,9 @@ const FALLBACK_DATA = {
         weeklyGain: 1,
       },
       recentProgress: [
-        "Astro Bot platinum secured",
-        "Final Fantasy VII Rebirth pushed to 92%",
-        "Still protecting first place",
+        "完成最新白金收尾",
+        "主力遊戲完成率推進到 92%",
+        "暫時守住第一名",
       ],
       featuredGames: [
         { title: "Astro Bot", platform: "PS5", completion: 100, platinumUnlocked: true },
@@ -40,8 +40,8 @@ const FALLBACK_DATA = {
       id: "astra-raid",
       onlineId: "AstraRaid88",
       displayName: "Astra Raid",
-      tagline: "Constant pressure, constant clean-up.",
-      location: "Taichung",
+      tagline: "穩定追分，最擅長清理尾盤。",
+      location: "台中",
       avatar: {
         initials: "AR",
         accent: "#c0c7d1",
@@ -55,9 +55,9 @@ const FALLBACK_DATA = {
         weeklyGain: 2,
       },
       recentProgress: [
-        "Helldivers 2 trophy cleanup in progress",
-        "Closed the weekly gap by 2 plats",
-        "Speedrunning backlog maintenance",
+        "本週白金增量持續追近",
+        "正在收尾大型動作遊戲",
+        "第二名位置相對穩定",
       ],
       featuredGames: [
         { title: "Helldivers 2", platform: "PS5", completion: 88, platinumUnlocked: false },
@@ -68,8 +68,8 @@ const FALLBACK_DATA = {
       id: "pixel-ronin",
       onlineId: "PixelRonin",
       displayName: "Pixel Ronin",
-      tagline: "Indie hunter with a boss-rush habit.",
-      location: "Kaohsiung",
+      tagline: "偏愛獨立與動作挑戰。",
+      location: "高雄",
       avatar: {
         initials: "PR",
         accent: "#d97706",
@@ -83,9 +83,9 @@ const FALLBACK_DATA = {
         weeklyGain: 1,
       },
       recentProgress: [
-        "Prince of Persia challenge rooms cleared",
-        "One more collectible sweep for another plat",
-        "Moving steadily inside top 3",
+        "挑戰房間全部清完",
+        "距離下一個白金只差最後掃尾",
+        "維持前三名競爭力",
       ],
       featuredGames: [
         { title: "Prince of Persia: The Lost Crown", platform: "PS5", completion: 96, platinumUnlocked: false },
@@ -96,8 +96,8 @@ const FALLBACK_DATA = {
       id: "luna-circuit",
       onlineId: "LunaCircuit",
       displayName: "Luna Circuit",
-      tagline: "Rhythm games and precision routing.",
-      location: "Tainan",
+      tagline: "節奏與精準路線的代表。",
+      location: "台南",
       avatar: {
         initials: "LC",
         accent: "#38bdf8",
@@ -111,9 +111,9 @@ const FALLBACK_DATA = {
         weeklyGain: 0,
       },
       recentProgress: [
-        "Persona 3 Reload social links nearly done",
-        "Current focus: clean 90%+ completion runs",
-        "Holding mid-table with consistent clears",
+        "主要 RPG 還在穩定推進",
+        "最近專注把完成率拉高",
+        "中段班位置相當穩定",
       ],
       featuredGames: [
         { title: "Persona 3 Reload", platform: "PS5", completion: 89, platinumUnlocked: false },
@@ -124,8 +124,8 @@ const FALLBACK_DATA = {
       id: "crimson-byte",
       onlineId: "CrimsonByte",
       displayName: "Crimson Byte",
-      tagline: "Backlog assassin with a spreadsheet soul.",
-      location: "Hsinchu",
+      tagline: "擅長把待辦清單一口氣清空。",
+      location: "新竹",
       avatar: {
         initials: "CB",
         accent: "#fb7185",
@@ -139,9 +139,9 @@ const FALLBACK_DATA = {
         weeklyGain: 1,
       },
       recentProgress: [
-        "Like a Dragon cleanup week",
-        "Raised overall completion above 52%",
-        "Watching the top 4 race closely",
+        "完成率重新往上拉升",
+        "正在整理大型作品的支線獎盃",
+        "持續緊咬前段班",
       ],
       featuredGames: [
         { title: "Like a Dragon: Infinite Wealth", platform: "PS5", completion: 84, platinumUnlocked: false },
@@ -152,8 +152,8 @@ const FALLBACK_DATA = {
       id: "nova-pulse",
       onlineId: "NovaPulse",
       displayName: "Nova Pulse",
-      tagline: "Story-driven runner with a late surge.",
-      location: "Taoyuan",
+      tagline: "最近追分速度最快的黑馬。",
+      location: "桃園",
       avatar: {
         initials: "NP",
         accent: "#a78bfa",
@@ -167,9 +167,9 @@ const FALLBACK_DATA = {
         weeklyGain: 2,
       },
       recentProgress: [
-        "Alan Wake 2 chapter cleanup underway",
-        "Strongest weekly growth in the field",
-        "Pushing to break into the next tier",
+        "本週增量是全場最快",
+        "主力劇情作正在補完",
+        "有機會往上一個級距推進",
       ],
       featuredGames: [
         { title: "Alan Wake 2", platform: "PS5", completion: 76, platinumUnlocked: false },
@@ -213,7 +213,7 @@ function normalizePlayer(player) {
     onlineId: player.onlineId,
     displayName: player.displayName,
     tagline: player.tagline,
-    location: player.location || "Unknown",
+    location: player.location || "未知",
     avatar: {
       initials: player.avatar.initials,
       accent: player.avatar.accent || player.avatar.gradient[0],
@@ -236,14 +236,14 @@ function normalizeDataset(input, sourceLabel) {
   const players = Array.isArray(input.players) ? input.players.filter(isValidPlayer).map(normalizePlayer) : [];
 
   if (players.length === 0) {
-    throw new Error("No valid players in payload");
+    throw new Error("沒有可用的玩家資料");
   }
 
   return {
     site: {
-      title: typeof site.title === "string" ? site.title : "PSN Rank Dashboard",
-      season: typeof site.season === "string" ? site.season : "Current Season",
-      updatedAt: typeof site.updatedAt === "string" ? site.updatedAt : "Unknown",
+      title: typeof site.title === "string" ? site.title : "PSN 排行戰報",
+      season: typeof site.season === "string" ? site.season : "本季",
+      updatedAt: typeof site.updatedAt === "string" ? site.updatedAt : "未提供",
       sourceLabel,
     },
     players,
@@ -259,7 +259,7 @@ export async function loadSiteData() {
     }
 
     const json = await response.json();
-    const dataset = normalizeDataset(json, "data/players.json");
+    const dataset = normalizeDataset(json, "本地 players.json");
 
     return {
       dataset,
@@ -270,7 +270,7 @@ export async function loadSiteData() {
     return {
       dataset: normalizeDataset(FALLBACK_DATA, FALLBACK_DATA.site.sourceLabel),
       usingFallback: true,
-      message: `Falling back to built-in mock data because data/players.json could not be used (${error.message}).`,
+      message: `因 data/players.json 無法使用，已改用內建示意資料（${error.message}）。`,
     };
   }
 }
