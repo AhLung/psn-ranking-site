@@ -1,0 +1,8 @@
+{
+  "updatedAt": "2026-03-30 12:00",
+  "players": [
+    { "name": "阿龍", "platinum": 85, "completion": 68.4 },
+    { "name": "朋友A", "platinum": 79, "completion": 65.2 },
+    { "name": "朋友B", "platinum": 62, "completion": 59.1 }
+  ]
+}
