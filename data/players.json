@@ -1,238 +1,245 @@
-﻿{
-  "site": {
-    "title": "PSN 排行戰報",
-    "season": "2026 春季賽",
-    "updatedAt": "2026-03-30 20:00 UTC+8",
-    "sourceLabel": "本地整理資料"
-  },
-  "players": [
-    {
-      "id": "night-raven",
-      "onlineId": "NightRavenTW",
-      "displayName": "Night Raven",
-      "tagline": "高難度白金也能穩定收下。",
-      "location": "台北",
-      "avatar": {
-        "initials": "NR",
-        "accent": "#fbbf24",
-        "gradient": ["#fbbf24", "#f97316"]
-      },
-      "stats": {
-        "platinum": 85,
-        "completion": 68.4,
-        "trophyPoints": 184620,
-        "gamesCompleted": 142,
-        "weeklyGain": 1
-      },
-      "recentProgress": [
-        "完成最新白金收尾",
-        "主力遊戲完成率推進到 92%",
-        "暫時守住第一名"
-      ],
-      "featuredGames": [
-        {
-          "title": "Astro Bot",
-          "platform": "PS5",
-          "completion": 100,
-          "platinumUnlocked": true
-        },
-        {
-          "title": "Final Fantasy VII Rebirth",
-          "platform": "PS5",
-          "completion": 92,
-          "platinumUnlocked": false
-        }
-      ]
-    },
-    {
-      "id": "astra-raid",
-      "onlineId": "AstraRaid88",
-      "displayName": "Astra Raid",
-      "tagline": "穩定追分，最擅長清理尾盤。",
-      "location": "台中",
-      "avatar": {
-        "initials": "AR",
-        "accent": "#cbd5e1",
-        "gradient": ["#cbd5e1", "#64748b"]
-      },
-      "stats": {
-        "platinum": 78,
-        "completion": 64.1,
-        "trophyPoints": 169440,
-        "gamesCompleted": 129,
-        "weeklyGain": 2
-      },
-      "recentProgress": [
-        "本週白金增量持續追近",
-        "正在收尾大型動作遊戲",
-        "第二名位置相對穩定"
-      ],
-      "featuredGames": [
-        {
-          "title": "Helldivers 2",
-          "platform": "PS5",
-          "completion": 88,
-          "platinumUnlocked": false
-        },
-        {
-          "title": "Resident Evil 4",
-          "platform": "PS5",
-          "completion": 100,
-          "platinumUnlocked": true
-        }
-      ]
-    },
-    {
-      "id": "pixel-ronin",
-      "onlineId": "PixelRonin",
-      "displayName": "Pixel Ronin",
-      "tagline": "偏愛獨立與動作挑戰。",
-      "location": "高雄",
-      "avatar": {
-        "initials": "PR",
-        "accent": "#f59e0b",
-        "gradient": ["#f59e0b", "#b45309"]
-      },
-      "stats": {
-        "platinum": 72,
-        "completion": 61.3,
-        "trophyPoints": 158120,
-        "gamesCompleted": 118,
-        "weeklyGain": 1
-      },
-      "recentProgress": [
-        "挑戰房間全部清完",
-        "距離下一個白金只差最後掃尾",
-        "維持前三名競爭力"
-      ],
-      "featuredGames": [
-        {
-          "title": "Prince of Persia: The Lost Crown",
-          "platform": "PS5",
-          "completion": 96,
-          "platinumUnlocked": false
-        },
-        {
-          "title": "Hades",
-          "platform": "PS5",
-          "completion": 100,
-          "platinumUnlocked": true
-        }
-      ]
-    },
-    {
-      "id": "luna-circuit",
-      "onlineId": "LunaCircuit",
-      "displayName": "Luna Circuit",
-      "tagline": "節奏與精準路線的代表。",
-      "location": "台南",
-      "avatar": {
-        "initials": "LC",
-        "accent": "#22d3ee",
-        "gradient": ["#22d3ee", "#2563eb"]
-      },
-      "stats": {
-        "platinum": 59,
-        "completion": 57.8,
-        "trophyPoints": 131980,
-        "gamesCompleted": 101,
-        "weeklyGain": 0
-      },
-      "recentProgress": [
-        "主要 RPG 還在穩定推進",
-        "最近專注把完成率拉高",
-        "中段班位置相當穩定"
-      ],
-      "featuredGames": [
-        {
-          "title": "Persona 3 Reload",
-          "platform": "PS5",
-          "completion": 89,
-          "platinumUnlocked": false
-        },
-        {
-          "title": "Beat Saber",
-          "platform": "PS5",
-          "completion": 100,
-          "platinumUnlocked": true
-        }
-      ]
-    },
-    {
-      "id": "crimson-byte",
-      "onlineId": "CrimsonByte",
-      "displayName": "Crimson Byte",
-      "tagline": "擅長把待辦清單一口氣清空。",
-      "location": "新竹",
-      "avatar": {
-        "initials": "CB",
-        "accent": "#f43f5e",
-        "gradient": ["#f43f5e", "#7f1d1d"]
-      },
-      "stats": {
-        "platinum": 51,
-        "completion": 52.6,
-        "trophyPoints": 118420,
-        "gamesCompleted": 88,
-        "weeklyGain": 1
-      },
-      "recentProgress": [
-        "完成率重新往上拉升",
-        "正在整理大型作品的支線獎盃",
-        "持續緊咬前段班"
-      ],
-      "featuredGames": [
-        {
-          "title": "Like a Dragon: Infinite Wealth",
-          "platform": "PS5",
-          "completion": 84,
-          "platinumUnlocked": false
-        },
-        {
-          "title": "Marvel's Spider-Man 2",
-          "platform": "PS5",
-          "completion": 100,
-          "platinumUnlocked": true
-        }
-      ]
-    },
-    {
-      "id": "nova-pulse",
-      "onlineId": "NovaPulse",
-      "displayName": "Nova Pulse",
-      "tagline": "最近追分速度最快的黑馬。",
-      "location": "桃園",
-      "avatar": {
-        "initials": "NP",
-        "accent": "#8b5cf6",
-        "gradient": ["#8b5cf6", "#ec4899"]
-      },
-      "stats": {
-        "platinum": 43,
-        "completion": 47.9,
-        "trophyPoints": 104900,
-        "gamesCompleted": 73,
-        "weeklyGain": 2
-      },
-      "recentProgress": [
-        "本週增量是全場最快",
-        "主力劇情作正在補完",
-        "有機會往上一個級距推進"
-      ],
-      "featuredGames": [
-        {
-          "title": "Alan Wake 2",
-          "platform": "PS5",
-          "completion": 76,
-          "platinumUnlocked": false
-        },
-        {
-          "title": "Ghost of Tsushima",
-          "platform": "PS5",
-          "completion": 100,
-          "platinumUnlocked": true
-        }
-      ]
-    }
-  ]
+{
+    "site":  {
+                 "title":  "PSN Rank Dashboard",
+                 "season":  "Live Browser Scrape Test",
+                 "updatedAt":  "2026-03-30T14:58:42Z",
+                 "sourceLabel":  "Live browser scrape from PSNProfiles"
+             },
+    "players":  [
+                    {
+                        "id":  "chaos-1119",
+                        "onlineId":  "Chaos_1119",
+                        "displayName":  "Chaos_1119",
+                        "tagline":  "PPATDM • Level 434 • 8,273 Trophies • 755 Games • World Rank: 92,717 • Country Rank: 374",
+                        "location":  "Unknown",
+                        "avatar":  {
+                                       "initials":  "CH",
+                                       "accent":  "#38bdf8",
+                                       "gradient":  [
+                                                        "#38bdf8",
+                                                        "#2563eb"
+                                                    ]
+                                   },
+                        "stats":  {
+                                      "platinum":  89,
+                                      "completion":  0,
+                                      "trophyPoints":  196170,
+                                      "gamesCompleted":  755,
+                                      "weeklyGain":  0
+                                  },
+                        "recentProgress":  [
+                                               "Recently played Satisfactory on PS5.",
+                                               "Trophy level 434 (Level 400).",
+                                               "755 games tracked on PSNProfiles."
+                                           ],
+                        "featuredGames":  [
+                                              {
+                                                  "title":  "Satisfactory",
+                                                  "platform":  "PS5",
+                                                  "completion":  0,
+                                                  "platinumUnlocked":  false
+                                              },
+                                              {
+                                                  "title":  "Backpack Hero",
+                                                  "platform":  "PS5",
+                                                  "completion":  0,
+                                                  "platinumUnlocked":  false
+                                              },
+                                              {
+                                                  "title":  "Solasta: Crown of the Magister",
+                                                  "platform":  "PS5",
+                                                  "completion":  1.38,
+                                                  "platinumUnlocked":  false
+                                              }
+                                          ]
+                    },
+                    {
+                        "id":  "hyde694",
+                        "onlineId":  "hyde694",
+                        "displayName":  "hyde694",
+                        "tagline":  "WKY2M • Level 1047 • 40,411 Trophies • 1,423 Games • World Rank: 1,966 • Country Rank: 18",
+                        "location":  "Unknown",
+                        "avatar":  {
+                                       "initials":  "HY",
+                                       "accent":  "#f59e0b",
+                                       "gradient":  [
+                                                        "#f59e0b",
+                                                        "#b45309"
+                                                    ]
+                                   },
+                        "stats":  {
+                                      "platinum":  1333,
+                                      "completion":  0,
+                                      "trophyPoints":  1829025,
+                                      "gamesCompleted":  1423,
+                                      "weeklyGain":  0
+                                  },
+                        "recentProgress":  [
+                                               "Recently played Diablo II: Resurrected on PS4.",
+                                               "Trophy level 1047 (Level 999).",
+                                               "1423 games tracked on PSNProfiles."
+                                           ],
+                        "featuredGames":  [
+                                              {
+                                                  "title":  "Diablo II: Resurrected",
+                                                  "platform":  "PS4",
+                                                  "completion":  0,
+                                                  "platinumUnlocked":  false
+                                              },
+                                              {
+                                                  "title":  "Diablo II: Resurrected",
+                                                  "platform":  "PS5",
+                                                  "completion":  0,
+                                                  "platinumUnlocked":  false
+                                              },
+                                              {
+                                                  "title":  "Zenless Zone Zero",
+                                                  "platform":  "PS5",
+                                                  "completion":  0.01,
+                                                  "platinumUnlocked":  false
+                                              }
+                                          ]
+                    },
+                    {
+                        "id":  "ahlunganan",
+                        "onlineId":  "AhLungAnAn",
+                        "displayName":  "AhLungAnAn",
+                        "tagline":  "1970 • Level 355 • 3,402 Trophies • 218 Games • World Rank: 231,473 • Country Rank: 970",
+                        "location":  "Unknown",
+                        "avatar":  {
+                                       "initials":  "AH",
+                                       "accent":  "#22c55e",
+                                       "gradient":  [
+                                                        "#22c55e",
+                                                        "#15803d"
+                                                    ]
+                                   },
+                        "stats":  {
+                                      "platinum":  58,
+                                      "completion":  0,
+                                      "trophyPoints":  109770,
+                                      "gamesCompleted":  218,
+                                      "weeklyGain":  0
+                                  },
+                        "recentProgress":  [
+                                               "Recently played Resident Evil Requiem on PS5.",
+                                               "Trophy level 355 (Level 300).",
+                                               "218 games tracked on PSNProfiles."
+                                           ],
+                        "featuredGames":  [
+                                              {
+                                                  "title":  "Resident Evil Requiem",
+                                                  "platform":  "PS5",
+                                                  "completion":  0,
+                                                  "platinumUnlocked":  false
+                                              },
+                                              {
+                                                  "title":  "Arknights: Endfield",
+                                                  "platform":  "PS5",
+                                                  "completion":  0,
+                                                  "platinumUnlocked":  false
+                                              },
+                                              {
+                                                  "title":  "Zenless Zone Zero",
+                                                  "platform":  "PS5",
+                                                  "completion":  0.01,
+                                                  "platinumUnlocked":  false
+                                              }
+                                          ]
+                    },
+                    {
+                        "id":  "hahajason778",
+                        "onlineId":  "hahajason778",
+                        "displayName":  "hahajason778",
+                        "tagline":  "• Level 353 • 4,886 Trophies • 210 Games • World Rank: 237,134 • Country Rank: 998",
+                        "location":  "Unknown",
+                        "avatar":  {
+                                       "initials":  "HA",
+                                       "accent":  "#f43f5e",
+                                       "gradient":  [
+                                                        "#f43f5e",
+                                                        "#7f1d1d"
+                                                    ]
+                                   },
+                        "stats":  {
+                                      "platinum":  33,
+                                      "completion":  0,
+                                      "trophyPoints":  107925,
+                                      "gamesCompleted":  210,
+                                      "weeklyGain":  0
+                                  },
+                        "recentProgress":  [
+                                               "Recently played Death Stranding 2: On the Beach on PS5.",
+                                               "Trophy level 353 (Level 300).",
+                                               "210 games tracked on PSNProfiles."
+                                           ],
+                        "featuredGames":  [
+                                              {
+                                                  "title":  "Death Stranding 2: On the Beach",
+                                                  "platform":  "PS5",
+                                                  "completion":  0,
+                                                  "platinumUnlocked":  false
+                                              },
+                                              {
+                                                  "title":  "Ghost of Yōtei",
+                                                  "platform":  "PS5",
+                                                  "completion":  0,
+                                                  "platinumUnlocked":  false
+                                              },
+                                              {
+                                                  "title":  "Zenless Zone Zero",
+                                                  "platform":  "PS5",
+                                                  "completion":  0.01,
+                                                  "platinumUnlocked":  false
+                                              }
+                                          ]
+                    },
+                    {
+                        "id":  "nengchr",
+                        "onlineId":  "Nengchr",
+                        "displayName":  "Nengchr",
+                        "tagline":  "J7CJJM • Level 441 • 6,735 Trophies • 216 Games • World Rank: 84,658 • Country Rank: 351",
+                        "location":  "Unknown",
+                        "avatar":  {
+                                       "initials":  "NE",
+                                       "accent":  "#8b5cf6",
+                                       "gradient":  [
+                                                        "#8b5cf6",
+                                                        "#ec4899"
+                                                    ]
+                                   },
+                        "stats":  {
+                                      "platinum":  138,
+                                      "completion":  0,
+                                      "trophyPoints":  206520,
+                                      "gamesCompleted":  216,
+                                      "weeklyGain":  0
+                                  },
+                        "recentProgress":  [
+                                               "Recently played Life is Strange: Double Exposure on PS5.",
+                                               "Trophy level 441 (Level 400).",
+                                               "216 games tracked on PSNProfiles."
+                                           ],
+                        "featuredGames":  [
+                                              {
+                                                  "title":  "Life is Strange: Double Exposure",
+                                                  "platform":  "PS5",
+                                                  "completion":  13.85,
+                                                  "platinumUnlocked":  false
+                                              },
+                                              {
+                                                  "title":  "Twelve Minutes",
+                                                  "platform":  "PS5",
+                                                  "completion":  0,
+                                                  "platinumUnlocked":  false
+                                              },
+                                              {
+                                                  "title":  "Twelve Minutes",
+                                                  "platform":  "PS4",
+                                                  "completion":  0,
+                                                  "platinumUnlocked":  false
+                                              }
+                                          ]
+                    }
+                ]
 }
