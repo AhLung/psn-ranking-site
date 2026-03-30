@@ -1,238 +1,57 @@
 {
-  "site": {
-    "title": "PSN Rank Dashboard",
-    "season": "Spring 2026",
-    "updatedAt": "2026-03-30 20:00 UTC+8",
-    "sourceLabel": "Sanitized local JSON"
-  },
-  "players": [
-    {
-      "id": "night-raven",
-      "onlineId": "NightRavenTW",
-      "displayName": "Night Raven",
-      "tagline": "Finishes the hard platinum before breakfast.",
-      "location": "Taipei",
-      "avatar": {
-        "initials": "NR",
-        "accent": "#fbbf24",
-        "gradient": ["#fbbf24", "#f97316"]
-      },
-      "stats": {
-        "platinum": 85,
-        "completion": 68.4,
-        "trophyPoints": 184620,
-        "gamesCompleted": 142,
-        "weeklyGain": 1
-      },
-      "recentProgress": [
-        "Astro Bot platinum secured",
-        "Final Fantasy VII Rebirth pushed to 92%",
-        "Still protecting first place"
-      ],
-      "featuredGames": [
-        {
-          "title": "Astro Bot",
-          "platform": "PS5",
-          "completion": 100,
-          "platinumUnlocked": true
-        },
-        {
-          "title": "Final Fantasy VII Rebirth",
-          "platform": "PS5",
-          "completion": 92,
-          "platinumUnlocked": false
-        }
-      ]
-    },
-    {
-      "id": "astra-raid",
-      "onlineId": "AstraRaid88",
-      "displayName": "Astra Raid",
-      "tagline": "Constant pressure, constant clean-up.",
-      "location": "Taichung",
-      "avatar": {
-        "initials": "AR",
-        "accent": "#cbd5e1",
-        "gradient": ["#cbd5e1", "#64748b"]
-      },
-      "stats": {
-        "platinum": 78,
-        "completion": 64.1,
-        "trophyPoints": 169440,
-        "gamesCompleted": 129,
-        "weeklyGain": 2
-      },
-      "recentProgress": [
-        "Helldivers 2 trophy cleanup in progress",
-        "Closed the weekly gap by 2 plats",
-        "Speedrunning backlog maintenance"
-      ],
-      "featuredGames": [
-        {
-          "title": "Helldivers 2",
-          "platform": "PS5",
-          "completion": 88,
-          "platinumUnlocked": false
-        },
-        {
-          "title": "Resident Evil 4",
-          "platform": "PS5",
-          "completion": 100,
-          "platinumUnlocked": true
-        }
-      ]
-    },
-    {
-      "id": "pixel-ronin",
-      "onlineId": "PixelRonin",
-      "displayName": "Pixel Ronin",
-      "tagline": "Indie hunter with a boss-rush habit.",
-      "location": "Kaohsiung",
-      "avatar": {
-        "initials": "PR",
-        "accent": "#f59e0b",
-        "gradient": ["#f59e0b", "#b45309"]
-      },
-      "stats": {
-        "platinum": 72,
-        "completion": 61.3,
-        "trophyPoints": 158120,
-        "gamesCompleted": 118,
-        "weeklyGain": 1
-      },
-      "recentProgress": [
-        "Prince of Persia challenge rooms cleared",
-        "One more collectible sweep for another plat",
-        "Moving steadily inside top 3"
-      ],
-      "featuredGames": [
-        {
-          "title": "Prince of Persia: The Lost Crown",
-          "platform": "PS5",
-          "completion": 96,
-          "platinumUnlocked": false
-        },
-        {
-          "title": "Hades",
-          "platform": "PS5",
-          "completion": 100,
-          "platinumUnlocked": true
-        }
-      ]
-    },
-    {
-      "id": "luna-circuit",
-      "onlineId": "LunaCircuit",
-      "displayName": "Luna Circuit",
-      "tagline": "Rhythm games and precision routing.",
-      "location": "Tainan",
-      "avatar": {
-        "initials": "LC",
-        "accent": "#22d3ee",
-        "gradient": ["#22d3ee", "#2563eb"]
-      },
-      "stats": {
-        "platinum": 59,
-        "completion": 57.8,
-        "trophyPoints": 131980,
-        "gamesCompleted": 101,
-        "weeklyGain": 0
-      },
-      "recentProgress": [
-        "Persona 3 Reload social links nearly done",
-        "Current focus: clean 90%+ completion runs",
-        "Holding mid-table with consistent clears"
-      ],
-      "featuredGames": [
-        {
-          "title": "Persona 3 Reload",
-          "platform": "PS5",
-          "completion": 89,
-          "platinumUnlocked": false
-        },
-        {
-          "title": "Beat Saber",
-          "platform": "PS5",
-          "completion": 100,
-          "platinumUnlocked": true
-        }
-      ]
-    },
-    {
-      "id": "crimson-byte",
-      "onlineId": "CrimsonByte",
-      "displayName": "Crimson Byte",
-      "tagline": "Backlog assassin with a spreadsheet soul.",
-      "location": "Hsinchu",
-      "avatar": {
-        "initials": "CB",
-        "accent": "#f43f5e",
-        "gradient": ["#f43f5e", "#7f1d1d"]
-      },
-      "stats": {
-        "platinum": 51,
-        "completion": 52.6,
-        "trophyPoints": 118420,
-        "gamesCompleted": 88,
-        "weeklyGain": 1
-      },
-      "recentProgress": [
-        "Like a Dragon cleanup week",
-        "Raised overall completion above 52%",
-        "Watching the top 4 race closely"
-      ],
-      "featuredGames": [
-        {
-          "title": "Like a Dragon: Infinite Wealth",
-          "platform": "PS5",
-          "completion": 84,
-          "platinumUnlocked": false
-        },
-        {
-          "title": "Marvel's Spider-Man 2",
-          "platform": "PS5",
-          "completion": 100,
-          "platinumUnlocked": true
-        }
-      ]
-    },
-    {
-      "id": "nova-pulse",
-      "onlineId": "NovaPulse",
-      "displayName": "Nova Pulse",
-      "tagline": "Story-driven runner with a late surge.",
-      "location": "Taoyuan",
-      "avatar": {
-        "initials": "NP",
-        "accent": "#8b5cf6",
-        "gradient": ["#8b5cf6", "#ec4899"]
-      },
-      "stats": {
-        "platinum": 43,
-        "completion": 47.9,
-        "trophyPoints": 104900,
-        "gamesCompleted": 73,
-        "weeklyGain": 2
-      },
-      "recentProgress": [
-        "Alan Wake 2 chapter cleanup underway",
-        "Strongest weekly growth in the field",
-        "Pushing to break into the next tier"
-      ],
-      "featuredGames": [
-        {
-          "title": "Alan Wake 2",
-          "platform": "PS5",
-          "completion": 76,
-          "platinumUnlocked": false
-        },
-        {
-          "title": "Ghost of Tsushima",
-          "platform": "PS5",
-          "completion": 100,
-          "platinumUnlocked": true
-        }
-      ]
-    }
-  ]
+    "site":  {
+                 "title":  "PSN Rank Dashboard",
+                 "season":  "Browser Scrape Test",
+                 "updatedAt":  "2026-03-30T14:42:50Z",
+                 "sourceLabel":  "Live browser scrape for AhLungAnAn"
+             },
+    "players":  [
+                    {
+                        "id":  "ahlunganan",
+                        "onlineId":  "AhLungAnAn",
+                        "displayName":  "AhLungAnAn",
+                        "tagline":  "1970 • Level 355 • 3,402 Trophies • 218 Games • World Rank: 231,473 • Country Rank: 970",
+                        "location":  "Unknown",
+                        "avatar":  {
+                                       "initials":  "AH",
+                                       "accent":  "#38bdf8",
+                                       "gradient":  [
+                                                        "#38bdf8",
+                                                        "#2563eb"
+                                                    ]
+                                   },
+                        "stats":  {
+                                      "platinum":  58,
+                                      "completion":  0,
+                                      "trophyPoints":  109770,
+                                      "gamesCompleted":  218,
+                                      "weeklyGain":  0
+                                  },
+                        "recentProgress":  [
+                                               "Recently played Resident Evil Requiem on PS5.",
+                                               "Trophy level 355 (Level 300).",
+                                               "218 games tracked on PSNProfiles."
+                                           ],
+                        "featuredGames":  [
+                                              {
+                                                  "title":  "Resident Evil Requiem",
+                                                  "platform":  "PS5",
+                                                  "completion":  0,
+                                                  "platinumUnlocked":  false
+                                              },
+                                              {
+                                                  "title":  "Arknights: Endfield",
+                                                  "platform":  "PS5",
+                                                  "completion":  0,
+                                                  "platinumUnlocked":  false
+                                              },
+                                              {
+                                                  "title":  "Zenless Zone Zero",
+                                                  "platform":  "PS5",
+                                                  "completion":  0.01,
+                                                  "platinumUnlocked":  false
+                                              }
+                                          ]
+                    }
+                ]
 }
