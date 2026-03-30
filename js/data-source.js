@@ -1,4 +1,4 @@
-﻿const PLAYERS_URL = new URL("../data/players.json", import.meta.url);
+const PLAYERS_URL = new URL("../data/players.json", import.meta.url);
 
 const FALLBACK_DATA = {
   site: {
@@ -183,6 +183,140 @@ function isFiniteNumber(value) {
   return typeof value === "number" && Number.isFinite(value);
 }
 
+function formatNumber(value) {
+  return new Intl.NumberFormat("zh-TW").format(value);
+}
+
+function localizeUpdatedAt(value) {
+  if (typeof value !== "string" || value.trim() === "") {
+    return "未提供";
+  }
+
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    return value;
+  }
+
+  return new Intl.DateTimeFormat("zh-TW", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: "Asia/Taipei",
+  }).format(parsed).replace(/\//g, "/");
+}
+
+function localizeSourceLabel(value) {
+  if (typeof value !== "string" || value.trim() === "") {
+    return "本地 players.json";
+  }
+
+  const normalized = value.toLowerCase();
+  if (normalized.includes("psnprofiles") && normalized.includes("browser")) {
+    return "即時同步資料";
+  }
+
+  if (normalized.includes("psnprofiles")) {
+    return "同步資料";
+  }
+
+  if (normalized.includes("players.json") || normalized.includes("local")) {
+    return "本地 players.json";
+  }
+
+  return value;
+}
+
+function localizeSeason(value) {
+  if (typeof value !== "string" || value.trim() === "") {
+    return "最新同步資料";
+  }
+
+  const normalized = value.toLowerCase();
+  if (normalized.includes("live browser scrape")) {
+    return "最新同步資料";
+  }
+
+  return value;
+}
+
+function localizeLocation(value) {
+  if (typeof value !== "string" || value.trim() === "" || value.toLowerCase() === "unknown") {
+    return "未知";
+  }
+
+  return value;
+}
+
+function localizeRankTitle(value) {
+  if (typeof value !== "string") {
+    return value;
+  }
+
+  const match = value.match(/^Level\s+(\d+)$/i);
+  if (match) {
+    return `等級區間 ${match[1]}`;
+  }
+
+  return value;
+}
+
+function buildLocalizedTagline(player) {
+  const stats = player.stats || {};
+  const segments = [];
+
+  if (isFiniteNumber(stats.platinum)) {
+    segments.push(`白金 ${formatNumber(stats.platinum)} 座`);
+  }
+
+  if (isFiniteNumber(stats.gamesCompleted)) {
+    segments.push(`已追蹤 ${formatNumber(stats.gamesCompleted)} 款遊戲`);
+  }
+
+  if (isFiniteNumber(stats.trophyPoints)) {
+    segments.push(`獎盃點數 ${formatNumber(stats.trophyPoints)}`);
+  }
+
+  return segments.join("・") || "同步玩家資料";
+}
+
+function localizeRecentProgressItem(value) {
+  if (typeof value !== "string" || value.trim() === "") {
+    return "最新同步資料已更新。";
+  }
+
+  const recentMatch = value.match(/^Recently played (.+) on (PS[\w-]+)\.$/i);
+  if (recentMatch) {
+    return `最近遊玩《${recentMatch[1]}》 (${recentMatch[2]})。`;
+  }
+
+  const levelMatch = value.match(/^Trophy level (\d+) \(([^)]+)\)\.$/i);
+  if (levelMatch) {
+    return `目前獎盃等級 ${levelMatch[1]}（${localizeRankTitle(levelMatch[2])}）。`;
+  }
+
+  const gamesMatch = value.match(/^(\d+) games tracked on PSNProfiles\.$/i);
+  if (gamesMatch) {
+    return `已追蹤 ${formatNumber(Number(gamesMatch[1]))} 款遊戲。`;
+  }
+
+  return value;
+}
+
+function normalizeFeaturedGame(game) {
+  const safeGame = game && typeof game === "object" ? game : {};
+  const platform = typeof safeGame.platform === "string" ? safeGame.platform : "未知平台";
+
+  return {
+    title: typeof safeGame.title === "string" && safeGame.title.trim() !== "" ? safeGame.title : "未命名遊戲",
+    platform,
+    completion: isFiniteNumber(safeGame.completion) ? safeGame.completion : 0,
+    platinumUnlocked: Boolean(safeGame.platinumUnlocked),
+  };
+}
+
 function isValidPlayer(player) {
   if (!player || typeof player !== "object") {
     return false;
@@ -195,8 +329,6 @@ function isValidPlayer(player) {
     typeof player.id === "string" &&
     typeof player.onlineId === "string" &&
     typeof player.displayName === "string" &&
-    typeof player.tagline === "string" &&
-    typeof avatar.initials === "string" &&
     Array.isArray(avatar.gradient) &&
     avatar.gradient.length >= 2 &&
     isFiniteNumber(stats.platinum) &&
@@ -208,15 +340,25 @@ function isValidPlayer(player) {
 }
 
 function normalizePlayer(player) {
+  const recentProgress = Array.isArray(player.recentProgress)
+    ? player.recentProgress.slice(0, 3).map(localizeRecentProgressItem)
+    : [];
+
   return {
     id: player.id,
     onlineId: player.onlineId,
     displayName: player.displayName,
-    tagline: player.tagline,
-    location: player.location || "未知",
+    tagline:
+      typeof player.tagline === "string" && /[\u4e00-\u9fff]/.test(player.tagline)
+        ? player.tagline
+        : buildLocalizedTagline(player),
+    location: localizeLocation(player.location),
     avatar: {
-      initials: player.avatar.initials,
-      accent: player.avatar.accent || player.avatar.gradient[0],
+      initials:
+        typeof player.avatar?.initials === "string" && player.avatar.initials.trim() !== ""
+          ? player.avatar.initials
+          : String(player.displayName || player.onlineId || "玩家").slice(0, 2).toUpperCase(),
+      accent: player.avatar?.accent || player.avatar?.gradient?.[0] || "#38bdf8",
       gradient: player.avatar.gradient.slice(0, 2),
     },
     stats: {
@@ -226,8 +368,10 @@ function normalizePlayer(player) {
       gamesCompleted: player.stats.gamesCompleted,
       weeklyGain: player.stats.weeklyGain,
     },
-    recentProgress: Array.isArray(player.recentProgress) ? player.recentProgress.slice(0, 3) : [],
-    featuredGames: Array.isArray(player.featuredGames) ? player.featuredGames.slice(0, 3) : [],
+    recentProgress,
+    featuredGames: Array.isArray(player.featuredGames)
+      ? player.featuredGames.slice(0, 3).map(normalizeFeaturedGame)
+      : [],
   };
 }
 
@@ -241,10 +385,13 @@ function normalizeDataset(input, sourceLabel) {
 
   return {
     site: {
-      title: typeof site.title === "string" ? site.title : "PSN 排行戰報",
-      season: typeof site.season === "string" ? site.season : "本季",
-      updatedAt: typeof site.updatedAt === "string" ? site.updatedAt : "未提供",
-      sourceLabel,
+      title:
+        typeof site.title === "string" && site.title.trim() !== "" && site.title !== "PSN Rank Dashboard"
+          ? site.title
+          : "PSN 排行戰報",
+      season: localizeSeason(site.season),
+      updatedAt: localizeUpdatedAt(site.updatedAt),
+      sourceLabel: localizeSourceLabel(sourceLabel),
     },
     players,
   };
@@ -259,7 +406,7 @@ export async function loadSiteData() {
     }
 
     const json = await response.json();
-    const dataset = normalizeDataset(json, "本地 players.json");
+    const dataset = normalizeDataset(json, json?.site?.sourceLabel || "本地 players.json");
 
     return {
       dataset,
