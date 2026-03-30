@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PSN 排行榜</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>PSN 白金排行榜</h1>
+  <p id="updated"></p>
+  <div id="list"></div>
+
+  <script>
+    fetch("./data.json")
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById("updated").textContent =
+          "最後更新：" + data.updatedAt;
+
+        const html = data.players
+          .sort((a, b) => b.platinum - a.platinum)
+          .map((p, i) => `
+            <div class="card">
+              <h2>#${i + 1} ${p.name}</h2>
+              <p>白金：${p.platinum}</p>
+              <p>完成率：${p.completion}%</p>
+            </div>
+          `)
+          .join("");
+
+        document.getElementById("list").innerHTML = html;
+      });
+  </script>
+</body>
+</html>
