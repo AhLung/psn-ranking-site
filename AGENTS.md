@@ -14,6 +14,9 @@ Agents and contributors should treat it as an evolving product, not a disposable
 - Domain types live in `types/domain.ts`
 - The current data access boundary is `lib/data/repository.ts`
 - Mock content lives in `lib/mock/`
+- File-based sync output lives in `data/players.json`
+- Friend sync targets live in `data/friends.json`
+- Python PSN sync lives in `scripts/psn_sync.py`
 - Future Supabase adapters live in `lib/supabase/`
 - Future sync logic lives in `lib/sync/`
 
@@ -29,6 +32,8 @@ Agents and contributors should treat it as an evolving product, not a disposable
 
 - Do not import mock files directly into route components unless there is a very strong reason.
 - Prefer reading through `lib/data/repository.ts`.
+- The repository may read `data/players.json` when `NEXT_PUBLIC_DATA_SOURCE=auto` or `sync-file`.
+- If `data/players.json` is empty or fallback-only, the app should continue using `lib/mock/`.
 - If you add Supabase or another backend, preserve the repository function signatures whenever possible.
 - Keep derived ranking logic centralized so ranking rules do not drift across pages and API routes.
 
@@ -49,11 +54,14 @@ Agents and contributors should treat it as an evolving product, not a disposable
 ## Sync Rules
 
 - `lib/sync/psn-sync.ts` is currently a scaffold, not a real PSN integration.
+- `scripts/psn_sync.py` is the Python-side PSNAWP sync skeleton for local runs and GitHub Actions.
 - When implementing real sync:
   - normalize raw provider data
   - write snapshots and progress records through the storage layer
   - log sync runs for observability
   - keep cron and manual sync flows using the same shared sync function
+  - keep request budgets conservative by default
+  - never print or commit NPSSO or derived tokens
 
 ## Supabase Rules
 
@@ -66,4 +74,3 @@ Agents and contributors should treat it as an evolving product, not a disposable
 
 - Update `README.md` when routes, setup steps, or env requirements change.
 - Update this file when architecture conventions change.
-

@@ -173,3 +173,58 @@ export type SyncRunResult = {
   timestamp: string;
   nextStep: string;
 };
+
+export type SyncedTitleTrophy = {
+  trophyId: number | null;
+  trophyGroupId: string | null;
+  trophyType: string | null;
+  trophyName: string | null;
+  trophyDetail: string | null;
+  earned: boolean | null;
+  earnedDateTime: string | null;
+  trophyEarnRate: number | null;
+};
+
+export type SyncedTitleRecord = {
+  gameId: string;
+  npCommunicationId: string | null;
+  npServiceName: string | null;
+  titleName: string;
+  platform: string;
+  genre: string;
+  rarity: Game["rarity"];
+  trophyCount: number;
+  completion: number;
+  platinumUnlocked: boolean;
+  lastUpdatedAt: string | null;
+  earnedTrophies: TrophyMix;
+  definedTrophies: TrophyMix;
+  trophies: SyncedTitleTrophy[];
+};
+
+export type SyncedPlayerRecord = Player & {
+  syncMetadata?: {
+    onlineId: string;
+    accountId: string | null;
+    source: "psnawp" | "mock-fallback";
+    retrievedAt: string;
+    requestBudget: {
+      maxFriends: number;
+      maxTitlesPerFriend: number;
+    };
+  };
+  syncedTitles?: SyncedTitleRecord[];
+};
+
+export type SyncedPlayersFile = {
+  generatedAt: string;
+  source: "psnawp" | "mock-fallback";
+  requestBudget: {
+    maxFriends: number;
+    maxTitlesPerFriend: number;
+  };
+  friends: string[];
+  players: SyncedPlayerRecord[];
+  games: Game[];
+  notes?: string[];
+};

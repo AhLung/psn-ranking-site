@@ -1,0 +1,40 @@
+name: PSN Sync Skeleton
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install sync dependencies
+        run: pip install -r requirements-sync.txt
+
+      - name: Create runtime .env from secrets
+        shell: bash
+        run: |
+          cat <<EOF > .env
+          NPSSO_CODE=${{ secrets.NPSSO_CODE }}
+          PSN_SYNC_MAX_FRIENDS=${{ vars.PSN_SYNC_MAX_FRIENDS || '3' }}
+          PSN_SYNC_MAX_TITLES_PER_FRIEND=${{ vars.PSN_SYNC_MAX_TITLES_PER_FRIEND || '3' }}
+          EOF
+
+      - name: Run safe sync skeleton
+        run: python scripts/psn_sync.py
+
+      - name: Upload generated players.json
+        uses: actions/upload-artifact@v4
+        with:
+          name: psn-sync-output
+          path: data/players.json

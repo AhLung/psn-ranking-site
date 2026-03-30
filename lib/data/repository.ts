@@ -1,8 +1,9 @@
 import { compareCallouts, upcomingFeatures } from "@/lib/constants";
-import { games, players } from "@/lib/mock";
+import { getDataBundle } from "@/lib/data/sync-file";
 import type {
   DashboardData,
   FeaturedGameComparison,
+  Game,
   GameComparisonRow,
   LeaderboardEntry,
   Player,
@@ -48,11 +49,9 @@ function buildLeaderboardEntry(player: Player, rank: number): LeaderboardEntry {
   };
 }
 
-function findGameTitle(gameId: string) {
-  return games.find((game) => game.id === gameId)?.title ?? "Unknown Game";
-}
-
 export async function getLeaderboard() {
+  const { players } = await getDataBundle();
+
   return sortPlayers(players).map((player, index) =>
     buildLeaderboardEntry(player, index + 1)
   );
@@ -60,6 +59,7 @@ export async function getLeaderboard() {
 
 export async function getPlayersDirectory(): Promise<PlayerCardModel[]> {
   const leaderboard = await getLeaderboard();
+  const { players, games } = await getDataBundle();
 
   return leaderboard.map((entry) => {
     const player = players.find((candidate) => candidate.id === entry.id);
@@ -73,7 +73,9 @@ export async function getPlayersDirectory(): Promise<PlayerCardModel[]> {
 
     return {
       ...entry,
-      topGameTitle: topProgress ? findGameTitle(topProgress.gameId) : "No tracked games yet",
+      topGameTitle: topProgress
+        ? games.find((game) => game.id === topProgress.gameId)?.title ?? "Unknown Game"
+        : "No tracked games yet",
       topGameCompletion: topProgress?.completion ?? 0,
       latestSnapshot: player?.snapshots.at(-1)?.date ?? ""
     };
@@ -81,11 +83,13 @@ export async function getPlayersDirectory(): Promise<PlayerCardModel[]> {
 }
 
 export async function getPlayerIds() {
+  const { players } = await getDataBundle();
   return players.map((player) => player.id);
 }
 
 export async function getPlayerDetail(id: string): Promise<PlayerDetailModel | null> {
   const leaderboard = await getLeaderboard();
+  const { games, players } = await getDataBundle();
   const leaderboardEntry = leaderboard.find((entry) => entry.id === id);
   const player = players.find((candidate) => candidate.id === id);
 
@@ -149,7 +153,7 @@ export async function getPlayerComparisonRows(): Promise<PlayerComparisonRow[]> 
   }));
 }
 
-function buildGameComparisonRows(): GameComparisonRow[] {
+function buildGameComparisonRows(players: Player[], games: Game[]): GameComparisonRow[] {
   return games
     .map((game) => {
       const playerCompletions = players
@@ -221,11 +225,13 @@ function buildGameComparisonRows(): GameComparisonRow[] {
 }
 
 export async function getGameComparisons() {
-  return buildGameComparisonRows();
+  const { games, players } = await getDataBundle();
+  return buildGameComparisonRows(players, games);
 }
 
 export async function getDashboardData(): Promise<DashboardData> {
   const leaderboard = await getLeaderboard();
+  const { games } = await getDataBundle();
   const spotlightGames = (await getGameComparisons()).slice(
     0,
     3

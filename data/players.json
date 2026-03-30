@@ -1,0 +1,124 @@
+{
+  "generatedAt": "2026-03-30T13:27:30.820352Z",
+  "source": "mock-fallback",
+  "requestBudget": {
+    "maxFriends": 3,
+    "maxTitlesPerFriend": 3
+  },
+  "friends": [
+    "NightRavenTW",
+    "AstraRaid88"
+  ],
+  "players": [
+    {
+      "id": "nightraventw",
+      "psnId": "NightRavenTW",
+      "displayName": "NightRavenTW",
+      "handle": "@nightraventw",
+      "motto": "NPSSO_CODE is missing. Wrote a mock-safe fallback instead of making PSN requests.",
+      "region": "Unknown",
+      "joinedAt": "2026-03-30T13:27:30.821197Z",
+      "accent": "#dad2fd",
+      "avatarGradient": [
+        "#a9d589",
+        "#d31ffc"
+      ],
+      "favoriteGenres": [
+        "Unknown"
+      ],
+      "trophyMix": {
+        "platinum": 0,
+        "gold": 0,
+        "silver": 0,
+        "bronze": 0
+      },
+      "stats": {
+        "platinum": 0,
+        "completion": 0,
+        "trophyPoints": 0,
+        "gamesCompleted": 0,
+        "weeklyTarget": 1
+      },
+      "snapshots": [
+        {
+          "date": "2026-03-30T13:27:30.821197Z",
+          "platinum": 0,
+          "completion": 0,
+          "trophyPoints": 0,
+          "gamesCompleted": 0
+        }
+      ],
+      "gameProgress": [],
+      "milestones": [],
+      "featuredGameIds": [],
+      "syncMetadata": {
+        "onlineId": "NightRavenTW",
+        "accountId": null,
+        "source": "mock-fallback",
+        "retrievedAt": "2026-03-30T13:27:30.821197Z",
+        "requestBudget": {
+          "maxFriends": 3,
+          "maxTitlesPerFriend": 3
+        }
+      },
+      "syncedTitles": []
+    },
+    {
+      "id": "astraraid88",
+      "psnId": "AstraRaid88",
+      "displayName": "AstraRaid88",
+      "handle": "@astraraid88",
+      "motto": "NPSSO_CODE is missing. Wrote a mock-safe fallback instead of making PSN requests.",
+      "region": "Unknown",
+      "joinedAt": "2026-03-30T13:27:30.821329Z",
+      "accent": "#f54ac3",
+      "avatarGradient": [
+        "#5fd9e0",
+        "#7f3085"
+      ],
+      "favoriteGenres": [
+        "Unknown"
+      ],
+      "trophyMix": {
+        "platinum": 0,
+        "gold": 0,
+        "silver": 0,
+        "bronze": 0
+      },
+      "stats": {
+        "platinum": 0,
+        "completion": 0,
+        "trophyPoints": 0,
+        "gamesCompleted": 0,
+        "weeklyTarget": 1
+      },
+      "snapshots": [
+        {
+          "date": "2026-03-30T13:27:30.821329Z",
+          "platinum": 0,
+          "completion": 0,
+          "trophyPoints": 0,
+          "gamesCompleted": 0
+        }
+      ],
+      "gameProgress": [],
+      "milestones": [],
+      "featuredGameIds": [],
+      "syncMetadata": {
+        "onlineId": "AstraRaid88",
+        "accountId": null,
+        "source": "mock-fallback",
+        "retrievedAt": "2026-03-30T13:27:30.821329Z",
+        "requestBudget": {
+          "maxFriends": 3,
+          "maxTitlesPerFriend": 3
+        }
+      },
+      "syncedTitles": []
+    }
+  ],
+  "games": [],
+  "notes": [
+    "NPSSO_CODE is missing. Wrote a mock-safe fallback instead of making PSN requests."
+  ]
+}
