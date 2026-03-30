@@ -3,33 +3,237 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PSN 排行榜</title>
+  <meta
+    name="description"
+    content="PSN 排行榜儀表板，顯示玩家排名、白金數與完成率。"
+  />
+  <title>PSN 排行榜儀表板</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>PSN 白金排行榜</h1>
-  <p id="updated"></p>
-  <div id="list"></div>
+  <div class="page-shell">
+    <div class="page-glow glow-left" aria-hidden="true"></div>
+    <div class="page-glow glow-right" aria-hidden="true"></div>
+
+    <main class="dashboard">
+      <header class="hero panel">
+        <div class="hero-copy">
+          <p class="eyebrow">PlayStation Trophy Tracker</p>
+          <h1>PSN 排行榜儀表板</h1>
+          <p class="hero-text">
+            用遊戲排行榜的視覺語言，快速查看目前白金競賽的領先者與整體完成率表現。
+          </p>
+        </div>
+
+        <div class="hero-panel">
+          <article class="metric-card">
+            <span class="metric-label">更新時間</span>
+            <strong id="updated">載入中...</strong>
+          </article>
+
+          <article class="metric-card">
+            <span class="metric-label">參賽玩家</span>
+            <strong id="player-count">--</strong>
+          </article>
+
+          <article class="metric-card">
+            <span class="metric-label">目前領先</span>
+            <strong id="leader-name">--</strong>
+            <small id="leader-score">等待資料</small>
+          </article>
+        </div>
+      </header>
+
+      <section class="section-heading">
+        <div>
+          <p class="section-kicker">Top 3 Showcase</p>
+          <h2>前三名焦點</h2>
+        </div>
+        <p class="section-note">第一名、第二名、第三名各自擁有不同視覺層級與配色。</p>
+      </section>
+
+      <section class="podium" id="podium" aria-label="前三名排行榜"></section>
+
+      <section class="leaderboard panel" aria-labelledby="leaderboard-title">
+        <div class="section-heading leaderboard-title-row">
+          <div>
+            <p class="section-kicker">Full Ranking</p>
+            <h2 id="leaderboard-title">完整排名</h2>
+          </div>
+          <p class="section-note">顯示排名、名稱、白金數與完成率。</p>
+        </div>
+
+        <div class="board-head" aria-hidden="true">
+          <span>排名</span>
+          <span>名稱</span>
+          <span>白金數</span>
+          <span>完成率</span>
+        </div>
+
+        <div class="leaderboard-list" id="list" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
 
   <script>
-    fetch("./data.json")
-      .then(r => r.json())
-      .then(data => {
-        document.getElementById("updated").textContent =
-          "最後更新：" + data.updatedAt;
+    const updatedEl = document.getElementById("updated");
+    const playerCountEl = document.getElementById("player-count");
+    const leaderNameEl = document.getElementById("leader-name");
+    const leaderScoreEl = document.getElementById("leader-score");
+    const podiumEl = document.getElementById("podium");
+    const listEl = document.getElementById("list");
 
-        const html = data.players
-          .sort((a, b) => b.platinum - a.platinum)
-          .map((p, i) => `
-            <div class="card">
-              <h2>#${i + 1} ${p.name}</h2>
-              <p>白金：${p.platinum}</p>
-              <p>完成率：${p.completion}%</p>
+    const completionFormatter = new Intl.NumberFormat("zh-Hant", {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1
+    });
+
+    const integerFormatter = new Intl.NumberFormat("zh-Hant");
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, (char) => {
+        const entities = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          "\"": "&quot;",
+          "'": "&#39;"
+        };
+
+        return entities[char];
+      });
+    }
+
+    function clampCompletion(value) {
+      const numeric = Number(value);
+
+      if (!Number.isFinite(numeric)) {
+        return 0;
+      }
+
+      return Math.min(100, Math.max(0, numeric));
+    }
+
+    function renderPodiumCard(player, rank) {
+      const completion = clampCompletion(player.completion);
+      const platinum = Number(player.platinum) || 0;
+      const labels = {
+        1: "Champion",
+        2: "Runner Up",
+        3: "Third Place"
+      };
+
+      return `
+        <article class="podium-card rank-${rank}">
+          <div class="podium-top">
+            <span class="card-badge">${labels[rank]}</span>
+            <div class="podium-rank">#${rank}</div>
+            <h3>${escapeHtml(player.name)}</h3>
+            <p class="podium-meta">持續推進獎盃進度，站上本週焦點席位。</p>
+          </div>
+
+          <div class="podium-stats">
+            <div class="stat-block">
+              <span class="stat-label">白金數</span>
+              <strong class="stat-value">${integerFormatter.format(platinum)}</strong>
             </div>
-          `)
-          .join("");
+            <div class="stat-block">
+              <span class="stat-label">完成率</span>
+              <strong class="stat-value">${completionFormatter.format(completion)}%</strong>
+            </div>
+          </div>
+        </article>
+      `;
+    }
 
-        document.getElementById("list").innerHTML = html;
+    function renderBoardRow(player, rank) {
+      const completion = clampCompletion(player.completion);
+      const platinum = Number(player.platinum) || 0;
+      const accentClass = rank <= 3 ? `top-${rank}` : "";
+      const badgeClass = rank <= 3 ? `rank-${rank}` : "rank-other";
+      const progressWidth = `${completion.toFixed(1)}%`;
+      const statusText =
+        rank === 1 ? "目前領先" : rank <= 3 ? "前三名" : "持續追分";
+
+      return `
+        <article class="board-row ${accentClass}">
+          <div class="cell cell-rank">
+            <span class="rank-badge ${badgeClass}">#${rank}</span>
+          </div>
+
+          <div class="cell cell-name">
+            <strong>${escapeHtml(player.name)}</strong>
+            <span>${statusText}</span>
+          </div>
+
+          <div class="cell cell-platinum">
+            <span class="stack-label">白金數</span>
+            <strong>${integerFormatter.format(platinum)}</strong>
+          </div>
+
+          <div class="cell cell-completion">
+            <div class="completion-head">
+              <span class="stack-label">完成率</span>
+              <strong class="completion-value">${completionFormatter.format(completion)}%</strong>
+            </div>
+            <span class="progress-track" aria-hidden="true">
+              <span class="progress-bar" style="width: ${progressWidth};"></span>
+            </span>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderDashboard(data) {
+      const players = Array.isArray(data.players) ? [...data.players] : [];
+
+      players.sort((left, right) => {
+        const platinumDiff = (Number(right.platinum) || 0) - (Number(left.platinum) || 0);
+
+        if (platinumDiff !== 0) {
+          return platinumDiff;
+        }
+
+        return clampCompletion(right.completion) - clampCompletion(left.completion);
+      });
+
+      updatedEl.textContent = data.updatedAt || "未提供";
+      playerCountEl.textContent = `${players.length} 位`;
+
+      if (players.length > 0) {
+        leaderNameEl.textContent = players[0].name;
+        leaderScoreEl.textContent = `白金 ${integerFormatter.format(Number(players[0].platinum) || 0)}`;
+      } else {
+        leaderNameEl.textContent = "暫無資料";
+        leaderScoreEl.textContent = "等待更新";
+      }
+
+      podiumEl.innerHTML = players
+        .slice(0, 3)
+        .map((player, index) => renderPodiumCard(player, index + 1))
+        .join("");
+
+      listEl.innerHTML = players.length
+        ? players.map((player, index) => renderBoardRow(player, index + 1)).join("")
+        : '<p class="status-message">目前沒有可顯示的排行榜資料。</p>';
+    }
+
+    fetch("./data.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Unable to load leaderboard data.");
+        }
+
+        return response.json();
+      })
+      .then(renderDashboard)
+      .catch(() => {
+        updatedEl.textContent = "資料載入失敗";
+        playerCountEl.textContent = "--";
+        leaderNameEl.textContent = "連線異常";
+        leaderScoreEl.textContent = "請稍後重試";
+        podiumEl.innerHTML = "";
+        listEl.innerHTML = '<p class="status-message">暫時無法載入排行榜資料。</p>';
       });
   </script>
 </body>
