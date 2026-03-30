@@ -1,76 +1,61 @@
 # AGENTS.md
 
-## Purpose
+## Repo Identity
 
-This repository is a long-term product scaffold for PSN Rank, a PlayStation Trophy Tracker / PSN platinum leaderboard app.
+This is the public site repo for the PlayStation Trophy Tracker / PSN white-platinum leaderboard frontend.
 
-Agents and contributors should treat it as an evolving product, not a disposable demo.
+This is not the private data preparation project.
 
-## Core Architecture
+## Hard Rules
 
-- App Router pages live in `app/`
-- Reusable UI lives in `components/`
-- shadcn-style base primitives live in `components/ui/`
-- Domain types live in `types/domain.ts`
-- The current data access boundary is `lib/data/repository.ts`
-- Mock content lives in `lib/mock/`
-- File-based sync output lives in `data/players.json`
-- Friend sync targets live in `data/friends.json`
-- Python PSN sync lives in `scripts/psn_sync.py`
-- Future Supabase adapters live in `lib/supabase/`
-- Future sync logic lives in `lib/sync/`
+- this is the public site repo
+- do not add scraping code here
+- only read sanitized local JSON
 
-## Current Product Routes
+## What Is Allowed
 
-- `/` dashboard
-- `/players` player directory
-- `/player/[id]` player detail
-- `/compare/players` player comparison
-- `/compare/games` game comparison
+- static HTML, CSS, and browser-side JavaScript
+- presentation logic for leaderboard, dashboard, comparison placeholders, and future public-facing modules
+- safe validation around `data/players.json`
+- built-in mock fallback when local JSON is missing or invalid
 
-## Data Layer Rules
+## What Is Not Allowed
 
-- Do not import mock files directly into route components unless there is a very strong reason.
-- Prefer reading through `lib/data/repository.ts`.
-- The repository may read `data/players.json` when `NEXT_PUBLIC_DATA_SOURCE=auto` or `sync-file`.
-- If `data/players.json` is empty or fallback-only, the app should continue using `lib/mock/`.
-- If you add Supabase or another backend, preserve the repository function signatures whenever possible.
-- Keep derived ranking logic centralized so ranking rules do not drift across pages and API routes.
+- provider SDKs for source-site collection
+- cookie-based login logic
+- token handling
+- scraping code
+- Python or backend collection scripts
+- cron or ingestion orchestration
+- direct calls to trophy source sites
 
-## UI Rules
+## Data Contract Rule
 
-- Maintain the dark, game-dashboard visual language.
-- Keep first, second, and third place visually distinct.
-- Mobile behavior matters as much as desktop behavior.
-- Favor reusable sections and small display components over page-local duplication.
-- If adding a new primitive, place it in `components/ui/` and keep the API consistent with shadcn patterns.
+The only frontend data input is:
 
-## API Rules
+- `data/players.json`
 
-- API routes should return structured JSON with an `ok` flag.
-- Sync endpoints must stay protected by secret-based authorization before real sync is enabled.
-- Keep route handlers thin; business logic should live in `lib/`.
+The data loading boundary is:
 
-## Sync Rules
+- `js/data-source.js`
 
-- `lib/sync/psn-sync.ts` is currently a scaffold, not a real PSN integration.
-- `scripts/psn_sync.py` is the Python-side PSNAWP sync skeleton for local runs and GitHub Actions.
-- When implementing real sync:
-  - normalize raw provider data
-  - write snapshots and progress records through the storage layer
-  - log sync runs for observability
-  - keep cron and manual sync flows using the same shared sync function
-  - keep request budgets conservative by default
-  - never print or commit NPSSO or derived tokens
+Keep all parsing, validation, and fallback behavior there so the rest of the UI stays simple.
 
-## Supabase Rules
+## Structure Guidance
 
-- Put connection details behind the existing config helpers.
-- Avoid scattering `process.env` usage across the app.
-- Use server-side clients for privileged writes.
-- Keep browser-side Supabase usage optional unless interactive features truly need it.
+- `index.html` defines the static shell
+- `style.css` defines the public dashboard look
+- `js/app.js` boots the page
+- `js/data-source.js` loads and validates local JSON
+- `js/render.js` renders sections
+- `js/sort.js` keeps ranking logic centralized
+- `docs/data-contract.md` describes the public JSON schema
 
-## Documentation
+## Documentation Rule
 
-- Update `README.md` when routes, setup steps, or env requirements change.
-- Update this file when architecture conventions change.
+If the data shape changes, update both:
+
+- `README.md`
+- `docs/data-contract.md`
+
+Keep this repo safe for public hosting at all times.
